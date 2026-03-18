@@ -1,5 +1,5 @@
 #include <stdio.h>
-int maini(){
+int main(){
     int arr1[10],arr2[10],arr3[10];
     int i,n1,n2,m,index=0;
     printf("Enter the no. of elements in array1 : ");
@@ -19,7 +19,7 @@ int maini(){
         arr3[index] = arr1[i];
         index++;
     }
-    for(i+0;i<n2;i++){
+    for(i=0;i<n2;i++){
         arr3[index] = arr2[i];
         index++;
     }
