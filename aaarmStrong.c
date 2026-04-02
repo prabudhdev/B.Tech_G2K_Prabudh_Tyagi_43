@@ -1,7 +1,11 @@
-#include<stdio.h>
-#include<math.h>
+#include<stdio.h> // HEADER FILE IN C.
+
+#include<math.h>// HEADER FILE IN C.
+
 int main(){
-    int num,rem,sum,temp,i;
+
+    int num,rem,sum,temp,i; 
+
     printf("Armstrong number from 1 to 100 are : \n");
     for(i=1;i<=100;i++){
         temp = num;
