@@ -6,11 +6,11 @@ int main (){
 
 
     printf("Enter your number:");
-    scanf("%d",&n);//input from user that store in n variable.
+    scanf("%d",&n);//input from user  that store in n variable.
 
     for(i=1;i<=n;i++){
 
-        fact = fact*i;
+        fact = fact*i;// here fact =1 and multiply by i .
 
     }
 
