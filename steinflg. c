@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    char line[150];
+    int vowels = 0, consonants = 0, i;
+
+    printf("Enter a string: ");
+    scanf("%s", line); // Note: scanf with %s stops at first space
+
+    for (i = 0; line[i] != '\0'; ++i) {
+        if (line[i] == 'a' || line[i] == 'e' || line[i] == 'i' ||
+            line[i] == 'o' || line[i] == 'u') {
+            vowels++;
+        } else if ((line[i] >= 'a' && line[i] <= 'z')) {
+            consonants++;
+        }
+    }
+
+    printf("Vowels: %d\n", vowels);
+    printf("Consonants: %d\n", consonants);
+
+    return 0;
+}
