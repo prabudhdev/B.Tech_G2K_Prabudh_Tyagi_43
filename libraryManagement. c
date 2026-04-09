@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Book {
+    int id;
+    char title[50];
+    char author[50];
+};
+
+void addBook();
+void displayBooks();
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n--- Library Management System ---");
+        printf("\n1. Add Book");
+        printf("\n2. Display All Books");
+        printf("\n3. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: addBook(); break;
+            case 2: displayBooks(); break;
+            case 3: exit(0);
+            default: printf("\nInvalid choice! Try again.\n");
+        }
+    }
+    return 0;
+}
+
+void addBook() {
+    FILE *fp = fopen("library.dat", "ab");
+    struct Book b;
+
+    if (fp == NULL) {
+        printf("Error opening file!\n");
+        return;
+    }
+
+    printf("\nEnter Book ID: ");
+    scanf("%d", &b.id);
+    getchar(); // Clear newline character from buffer
+    printf("Enter Book Title: ");
+    fgets(b.title, 50, stdin);
+    b.title[strcspn(b.title, "\n")] = 0; // Remove trailing newline
+    printf("Enter Author Name: ");
+    fgets(b.author, 50, stdin);
+    b.author[strcspn(b.author, "\n")] = 0;
+
+    fwrite(&b, sizeof(struct Book), 1, fp);
+    fclose(fp);
+    printf("Book added successfully!\n");
+}
+
+void displayBooks() {
+    FILE *fp = fopen("library.dat", "rb");
+    struct Book b;
+
+    if (fp == NULL) {
+        printf("\nNo records found. Add a book first!\n");
+        return;
+    }
+
+    printf("\n%-10s %-20s %-20s", "ID", "Title", "Author");
+    printf("\n---------------------------------------------------");
+    
+    while (fread(&b, sizeof(struct Book), 1, fp)) {
+        printf("\n%-10d %-20s %-20s", b.id, b.title, b.author);
+    }
+    
+    fclose(fp);
+    printf("\n");
+}
